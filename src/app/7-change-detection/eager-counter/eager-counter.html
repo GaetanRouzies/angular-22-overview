@@ -1,0 +1,9 @@
+<div class="border rounded p-4 bg-green-50">
+  <h2>Live orders - Eager (works)</h2>
+  <p>Pending orders: <strong>{{ pendingOrders }}</strong></p>
+  <p>
+    Mutates a plain field every 1.5 s. Declaring
+    <code>changeDetection: ChangeDetectionStrategy.Eager</code> brings back the v21-style
+    "check every CD pass" behavior.
+  </p>
+</div>

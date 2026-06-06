@@ -1,0 +1,98 @@
+<p class="mb-4">
+  Angular 22's template compiler gains JS-style comments, spread syntax, multi-case
+  <code>&#64;switch</code>, template arrow functions and (preview) the <code>&#64;boundary</code>
+  error block. Below: a small cart / order-summary UI using each.
+</p>
+
+<div class="border rounded p-4 mb-4">
+  <h2>1. JS-style comments inside element tags</h2>
+  <div
+    // cart preview container
+    class="bg-gray-100 p-2 rounded"
+    /*
+       This block summarizes the cart.
+       Keep comments next to the markup they document.
+    */
+    title="Cart preview"
+  >
+    Cart preview - {{ totalItems() }} item(s)
+  </div>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>2. Spread syntax - class objects and function arguments</h2>
+  @for (item of cart(); track item.name) {
+    <div
+      [class]="{
+        ...baseItemClasses,
+        'opacity-50': item.outOfStock,
+      }"
+    >
+      <span>
+        {{ item.name }} × {{ item.quantity }}
+        @if (item.outOfStock) {
+          <em>(out of stock)</em>
+        }
+      </span>
+      <span>{{ lineTotal(item).toFixed(2) }} €</span>
+    </div>
+  }
+  <p class="mt-2">Cart total: <strong>{{ cartTotal(...cart()).toFixed(2) }} €</strong></p>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>3. <code>&#64;switch</code> with fall-through cases</h2>
+  <div class="flex flex-wrap gap-2 my-2">
+    <button class="bg-primary" (click)="setStatus('Pending')">Pending</button>
+    <button class="bg-primary" (click)="setStatus('Processing')">Processing</button>
+    <button class="bg-primary" (click)="setStatus('Shipped')">Shipped</button>
+    <button class="bg-primary" (click)="setStatus('Delivered')">Delivered</button>
+  </div>
+  @switch (orderStatus()) {
+    @case ('Pending')
+    @case ('Processing') {
+      <p>Your order is being prepared…</p>
+    }
+    @case ('Shipped') {
+      <p>On its way! Tracking will be sent by email.</p>
+    }
+    @default {
+      <p>Order delivered. Thank you!</p>
+    }
+  }
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>4. Inline arrow functions - quantity controls</h2>
+  <p class="mb-2">
+    The buttons below mutate the <code>featured</code> signal directly with an arrow function - no
+    component method needed.
+  </p>
+  <div class="flex items-center gap-2 my-1">
+    <span class="w-32">{{ featured().name }}</span>
+    <button
+      class="bg-gray-500"
+      (click)="featured.update((p) => ({ ...p, quantity: p.quantity > 0 ? p.quantity - 1 : 0 }))"
+    >
+      −
+    </button>
+    <span>{{ featured().quantity }}</span>
+    <button class="bg-primary" (click)="featured.update((p) => ({ ...p, quantity: p.quantity + 1 }))">
+      +
+    </button>
+  </div>
+</div>
+
+<div class="border rounded p-4">
+  <h2>5. <code>&#64;boundary</code> - error isolation (Developer Preview, Q3 2026)</h2>
+  <p>
+    Wrap a non-critical region in <code>&#64;boundary</code> so an isolated failure cannot crash
+    the entire checkout page.
+  </p>
+  <pre class="bg-gray-100 p-2 rounded">&#64;boundary &#123;
+  &lt;app-recommendations [customerId]="customerId()" /&gt;
+&#125;
+&#64;error (let err) &#123;
+  &lt;p&gt;Could not load recommendations.&lt;/p&gt;
+&#125;</pre>
+</div>

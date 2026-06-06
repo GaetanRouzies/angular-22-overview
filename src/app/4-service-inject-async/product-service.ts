@@ -1,0 +1,33 @@
+import { Service, signal } from '@angular/core'
+
+export interface Product {
+  id: number
+  name: string
+  price: number
+}
+
+// `@Service()` is the new succinct replacement for `@Injectable({ providedIn: 'root' })`.
+// It is provided in the root injector by default.
+@Service()
+export class ProductService {
+  private readonly catalog = signal<Product[]>([
+    { id: 1, name: 'Espresso', price: 2.5 },
+    { id: 2, name: 'Cappuccino', price: 3.5 },
+    { id: 3, name: 'Croissant', price: 2.0 },
+  ])
+
+  products = this.catalog.asReadonly()
+
+  add(name: string, price: number): void {
+    const nextId = (this.catalog().at(-1)?.id ?? 0) + 1
+    this.catalog.update((current) => [...current, { id: nextId, name, price }])
+  }
+
+  remove(id: number): void {
+    this.catalog.update((current) => current.filter((product) => product.id !== id))
+  }
+
+  total(): number {
+    return this.catalog().reduce((sum, product) => sum + product.price, 0)
+  }
+}

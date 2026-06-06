@@ -1,0 +1,78 @@
+<p class="mb-4">
+  A product creation form modeled with Signal Forms - strongly typed, signal-driven, and with
+  validation expressed as a schema callback.
+</p>
+
+<form class="mb-4">
+  <div class="mb-2">
+    <label>
+      Name:
+      <input class="border rounded px-2 py-1 ml-2" [formField]="productForm.name" />
+    </label>
+    @if (productForm.name().invalid() && productForm.name().touched()) {
+      <p>{{ productForm.name().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label>
+      SKU:
+      <input class="border rounded px-2 py-1 ml-2" [formField]="productForm.sku" />
+    </label>
+    @if (productForm.sku().invalid() && productForm.sku().touched()) {
+      <p>{{ productForm.sku().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label>
+      Price:
+      <input
+        class="border rounded px-2 py-1 ml-2"
+        type="number"
+        step="0.01"
+        [formField]="productForm.price"
+      />
+    </label>
+    @if (productForm.price().invalid() && productForm.price().touched()) {
+      <p>{{ productForm.price().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label>
+      Category:
+      <select class="border rounded px-2 py-1 ml-2" [formField]="productForm.category">
+        <option value="">Select a category…</option>
+        @for (c of categories; track c) {
+          <option [value]="c">{{ c }}</option>
+        }
+      </select>
+    </label>
+    @if (productForm.category().invalid() && productForm.category().touched()) {
+      <p>{{ productForm.category().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label>
+      <input type="checkbox" class="mr-2" [formField]="productForm.inStock" />
+      In stock
+    </label>
+  </div>
+
+  <button
+    class="bg-primary"
+    type="button"
+    (click)="onSubmit()"
+    [disabled]="productForm().invalid()"
+  >
+    Create product
+  </button>
+</form>
+
+<div class="border rounded p-4">
+  <h2>Form State</h2>
+  <pre class="bg-gray-100 p-2 rounded">{{ productForm().value() | json }}</pre>
+  <p>Valid: {{ productForm().valid() }}</p>
+</div>

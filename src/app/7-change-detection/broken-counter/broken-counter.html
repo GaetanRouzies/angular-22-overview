@@ -1,0 +1,8 @@
+<div class="border rounded p-4 bg-red-50">
+  <h2>Live orders - no strategy (broken)</h2>
+  <p>Pending orders: <strong>{{ pendingOrders }}</strong></p>
+  <p>
+    Same code as the Eager variant, but no <code>changeDetection</code> declared. With OnPush as
+    the default, the view never re-renders even though the counter keeps incrementing in JS.
+  </p>
+</div>

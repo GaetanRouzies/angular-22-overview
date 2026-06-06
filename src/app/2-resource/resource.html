@@ -1,0 +1,62 @@
+<p class="mb-4">
+  The same orders endpoint, fetched three different ways. <code>httpResource</code> (declarative
+  URL), <code>rxResource</code> (Observable loader) and <code>resource</code> (Promise loader) all
+  re-run automatically when <code>customerId</code> changes.
+</p>
+
+<div class="flex items-center gap-2 mb-4">
+  <span>Select customer:</span>
+  @for (id of [1, 2, 3]; track id) {
+    <button [class]="customerId() === id ? 'bg-primary' : 'bg-gray-500'"
+            (click)="customerId.set(id)">#{{ id }}
+    </button>
+  }
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>httpResource()</h2>
+  @if (orders1.isLoading()) {
+    <p>Loading orders…</p>
+  } @else if (orders1.error()) {
+    <p>Could not fetch orders.</p>
+  } @else if (orders1.hasValue()) {
+    <ul>
+      @for (order of orders1.value(); track order.id) {
+        <li>{{ order.id }} - {{ order.total }} €</li>
+      }
+    </ul>
+    <p class="mt-2">Total spent: <strong>{{ total1() }} €</strong></p>
+  }
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>rxResource()</h2>
+  @if (orders2.isLoading()) {
+    <p>Loading orders…</p>
+  } @else if (orders2.error()) {
+    <p>Could not fetch orders.</p>
+  } @else if (orders2.hasValue()) {
+    <ul>
+      @for (order of orders2.value(); track order.id) {
+        <li>{{ order.id }} - {{ order.total }} €</li>
+      }
+    </ul>
+    <p class="mt-2">Total spent: <strong>{{ total2() }} €</strong></p>
+  }
+</div>
+
+<div class="border rounded p-4">
+  <h2>resource()</h2>
+  @if (orders3.isLoading()) {
+    <p>Loading orders…</p>
+  } @else if (orders3.error()) {
+    <p>Could not fetch orders.</p>
+  } @else if (orders3.hasValue()) {
+    <ul>
+      @for (order of orders3.value(); track order.id) {
+        <li>{{ order.id }} - {{ order.total }} €</li>
+      }
+    </ul>
+    <p class="mt-2">Total spent: <strong>{{ total3() }} €</strong></p>
+  }
+</div>

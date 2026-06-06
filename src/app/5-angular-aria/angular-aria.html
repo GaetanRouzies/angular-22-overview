@@ -1,0 +1,75 @@
+<p class="mb-4">
+  <code>&#64;angular/aria</code> graduates from experimental in v22 with 12 stable patterns
+  (Toolbar, Tabs, Tree, Menu, Listbox, Combobox, Accordion, Radio Group, Dialog, Tooltip,
+  Disclosure, Grid). Below: a filter toolbar and category tabs for a small product catalog.
+</p>
+
+<div class="border rounded p-4 mb-4">
+  <h2>Catalog filters (Toolbar pattern)</h2>
+  <!-- With @angular/aria installed:
+  <div ngToolbar aria-label="Catalog filters" class="flex gap-2 p-2 border rounded">
+    <button ngToolbarWidget value="name" (click)="sortBy.set('name')">Sort by name</button>
+    ...
+  </div>
+  -->
+  <div class="flex flex-wrap gap-2 p-2 border rounded" role="toolbar" aria-label="Catalog filters">
+    <button
+      class="bg-primary"
+      [class.opacity-50]="sortBy() !== 'name'"
+      (click)="sortBy.set('name')"
+    >
+      Sort by name
+    </button>
+    <button
+      class="bg-primary"
+      [class.opacity-50]="sortBy() !== 'price'"
+      (click)="sortBy.set('price')"
+    >
+      Sort by price
+    </button>
+    <button
+      class="bg-primary"
+      [class.opacity-50]="viewMode() !== 'grid'"
+      (click)="viewMode.set('grid')"
+    >
+      Grid view
+    </button>
+    <button
+      class="bg-primary"
+      [class.opacity-50]="viewMode() !== 'list'"
+      (click)="viewMode.set('list')"
+    >
+      List view
+    </button>
+  </div>
+</div>
+
+<div class="border rounded p-4">
+  <h2>Categories (Tabs pattern)</h2>
+  <div class="flex gap-2 border-b mb-2" role="tablist">
+    @for (c of categories; track c) {
+      <button
+        role="tab"
+        class="bg-primary"
+        [class.opacity-50]="category() !== c"
+        (click)="category.set(c)"
+      >
+        {{ c }}
+      </button>
+    }
+  </div>
+  <div role="tabpanel">
+    @if (filtered().length > 0) {
+      <ul>
+        @for (product of filtered(); track product.name) {
+          <li>
+            {{ product.name }} ({{ product.category }}) - {{ product.price.toFixed(2) }} €
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>No products in this category.</p>
+    }
+    <p class="mt-2">View mode: <strong>{{ viewMode() }}</strong></p>
+  </div>
+</div>

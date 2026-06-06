@@ -1,0 +1,63 @@
+<p class="mb-4">
+  Angular 22's <code>debounced()</code> (experimental) delays reacting to a signal's value until it
+  stops changing, and returns a <code>Resource</code> whose <code>value()</code> reflects the
+  debounced value. Below: a search box whose query is debounced by 400&nbsp;ms before triggering a
+  (mocked) async lookup.
+</p>
+
+<div class="border rounded p-4 mb-4">
+  <h2>1. <code>debounced()</code> - raw vs. settled value</h2>
+  <label for="search" class="block mb-1">Search fruits</label>
+  <input
+    id="search"
+    type="text"
+    class="border rounded p-2 w-full"
+    placeholder="Try typing 'berry'…"
+    [value]="query()"
+    (input)="onInput($any($event.target).value)"
+  />
+
+  <dl class="grid grid-cols-2 gap-2 mt-3">
+    <dt class="font-semibold">Raw query (every keystroke)</dt>
+    <dd>{{ query() || '-' }} ({{ keystrokes() }} keystroke(s))</dd>
+
+    <dt class="font-semibold">Debounced query (after 400&nbsp;ms idle)</dt>
+    <dd>{{ debouncedQuery.value() || '-' }}</dd>
+  </dl>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>2. <code>resource()</code> keyed on the debounced value</h2>
+  <p class="mb-2">
+    The loader runs only once typing pauses - not on every keystroke - because its
+    <code>params</code> read <code>debouncedQuery.value()</code>.
+  </p>
+
+  @if (results.isLoading()) {
+    <p aria-live="polite">Searching…</p>
+  } @else if (resultCount() > 0) {
+    <ul aria-live="polite">
+      @for (item of results.value(); track item.id) {
+        <li>{{ item.name }}</li>
+      }
+    </ul>
+  } @else if (debouncedQuery.value().trim()) {
+    <p aria-live="polite">No matches.</p>
+  } @else {
+    <p>Start typing to search.</p>
+  }
+</div>
+
+<div class="border rounded p-4">
+  <h2>3. Custom wait function</h2>
+  <p>
+    Instead of a fixed number of milliseconds, <code>debounced()</code> accepts a function returning
+    a <code>Promise&lt;void&gt;</code> - useful for adaptive delays or skipping the wait after an
+    error.
+  </p>
+  <pre class="bg-gray-100 p-2 rounded">debouncedQuery = debounced(this.query, (value, lastSnapshot) =&gt; &#123;
+  if (lastSnapshot.status === 'error') return;
+  const ms = value.length &lt; 3 ? 500 : 200;
+  return new Promise&lt;void&gt;((resolve) =&gt; setTimeout(resolve, ms));
+&#125;);</pre>
+</div>

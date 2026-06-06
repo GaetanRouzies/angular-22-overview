@@ -1,0 +1,39 @@
+{
+  "customers": {
+    "1": {
+      "id": 1,
+      "name": "Ada Lovelace",
+      "email": "ada@catalyseur.dev",
+      "company": { "name": "Analytical Engines" }
+    },
+    "2": {
+      "id": 2,
+      "name": "Alan Turing",
+      "email": "alan@catalyseur.dev",
+      "company": { "name": "Bombe Machines" }
+    },
+    "3": {
+      "id": 3,
+      "name": "Grace Hopper",
+      "email": "grace@catalyseur.dev",
+      "company": { "name": "Compiler Works" }
+    }
+  },
+  "orders": {
+    "1": [
+      { "id": "ORD-1-100", "total": 42 },
+      { "id": "ORD-1-101", "total": 19 },
+      { "id": "ORD-1-102", "total": 73 }
+    ],
+    "2": [
+      { "id": "ORD-2-100", "total": 12 },
+      { "id": "ORD-2-101", "total": 65 }
+    ],
+    "3": [
+      { "id": "ORD-3-100", "total": 30 },
+      { "id": "ORD-3-101", "total": 55 },
+      { "id": "ORD-3-102", "total": 9 },
+      { "id": "ORD-3-103", "total": 91 }
+    ]
+  }
+}

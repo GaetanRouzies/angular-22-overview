@@ -1,0 +1,50 @@
+<p class="mb-4">
+  Angular 22 ships with full TypeScript 6 compatibility. The features below pair nicely with
+  Signals on an order / payment domain.
+</p>
+
+<div class="border rounded p-4 mb-4">
+  <h2>1. <code>satisfies</code> - typed status palette</h2>
+  <p>Values are checked against <code>Record&lt;OrderStatus, StatusStyle&gt;</code>, yet keep their
+  narrow literal types.</p>
+  <ul>
+    @for (status of pipeline; track status) {
+      <li>
+        <span [style.color]="palette[status].color"
+          ><strong>{{ palette[status].label }}</strong></span
+        >
+        - <code>{{ status }}</code>
+      </li>
+    }
+  </ul>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>2. <code>const</code> type parameters - order pipeline</h2>
+  <div class="flex flex-wrap gap-2 my-2">
+    @for (status of pipeline; track status) {
+      <button
+        class="bg-primary"
+        [class.opacity-50]="currentStatus() !== status"
+        (click)="setStatus(status)"
+      >
+        {{ palette[status].label }}
+      </button>
+    }
+  </div>
+  <p>Active: <strong>{{ palette[currentStatus()].label }}</strong></p>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>3. Aliased-condition narrowing - payment methods</h2>
+  <ul>
+    @for (label of paymentLabels; track label) {
+      <li>{{ label }}</li>
+    }
+  </ul>
+</div>
+
+<div class="border rounded p-4">
+  <h2>4. <code>Awaited&lt;T&gt;</code> - async return inference</h2>
+  <p>{{ greeting() }}</p>
+</div>

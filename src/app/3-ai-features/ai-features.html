@@ -1,0 +1,18 @@
+<p class="mb-4">
+  Angular 22 ships a broader AI surface area: MCP tooling for editor agents, pre-packaged Skills
+  that codify best practices, and an experimental WebMCP API.
+</p>
+
+@for (group of groups; track group.title) {
+  <div class="border rounded p-4 mb-4">
+    <h2>{{ group.title }}</h2>
+    <p class="mb-2">{{ group.description }}</p>
+    <ul>
+      @for (item of group.items; track item.name) {
+        <li class="mb-1">
+          <code>{{ item.name }}</code> - {{ item.detail }}
+        </li>
+      }
+    </ul>
+  </div>
+}
