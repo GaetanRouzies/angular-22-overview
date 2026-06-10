@@ -10,22 +10,22 @@ interface Example {
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule],
   templateUrl: './navbar.html',
 })
 export class Navbar {
   private router = inject(Router)
 
   examples: Example[] = [
-    { path: 'signal-forms', title: '1. Signal Forms' },
-    { path: 'resource', title: '2. resource & httpResource' },
-    { path: 'ai-features', title: '3. AI Features' },
-    { path: 'service-inject-async', title: '4. @Service & injectAsync' },
-    { path: 'angular-aria', title: '5. Angular ARIA' },
-    { path: 'typescript-6', title: '6. TypeScript 6' },
-    { path: 'change-detection', title: '7. Change Detection' },
-    { path: 'templates', title: '8. Template Improvements' },
-    { path: 'signal-debounced', title: '9. Debounced Signals' },
+    { path: 'onpush-default', title: '1. OnPush by Default' },
+    { path: 'service-decorator', title: '2. @Service Decorator' },
+    { path: 'inject-async', title: '3. injectAsync' },
+    { path: 'http-fetch', title: '4. HTTP Fetch' },
+    { path: 'template-improvements', title: '5. Template Improvements' },
+    { path: 'quick-news', title: '6. Quick News' },
+    { path: 'debounced-signal', title: '7. Debounced Signals' },
+    { path: 'resources', title: '8. resource & httpResource' },
+    { path: 'webmcp-ai', title: '9. WebMCP & AI' },
+    { path: 'signal-forms', title: '10. Signal Forms' },
   ]
 
   currentPath = signal<string>('')
@@ -34,11 +34,11 @@ export class Navbar {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        const path = event.urlAfterRedirects.replace('/', '') || 'signal-forms'
+        const path = event.urlAfterRedirects.replace('/', '') || 'onpush-default'
         this.currentPath.set(path)
       })
 
-    const initialPath = this.router.url.replace('/', '') || 'signal-forms'
+    const initialPath = this.router.url.replace('/', '') || 'onpush-default'
     this.currentPath.set(initialPath)
   }
 

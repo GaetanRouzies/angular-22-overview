@@ -2,43 +2,49 @@ import { Routes } from '@angular/router'
 
 export const routes: Routes = [
   {
+    path: 'onpush-default',
+    loadComponent: () => import('./1-onpush-default/onpush-default').then((m) => m.OnPushDefault),
+  },
+  {
+    path: 'service-decorator',
+    loadComponent: () =>
+      import('./2-service-decorator/service-decorator').then((m) => m.ServiceDecorator),
+  },
+  {
+    path: 'inject-async',
+    loadComponent: () => import('./3-inject-async/inject-async').then((m) => m.InjectAsync),
+  },
+  {
+    path: 'http-fetch',
+    loadComponent: () => import('./4-http-fetch/http-fetch').then((m) => m.HttpFetch),
+  },
+  {
+    path: 'template-improvements',
+    loadComponent: () =>
+      import('./5-template-improvements/template-improvements').then(
+        (m) => m.TemplateImprovements,
+      ),
+  },
+  {
+    path: 'quick-news',
+    loadComponent: () => import('./6-quick-news/quick-news').then((m) => m.QuickNews),
+  },
+  {
+    path: 'debounced-signal',
+    loadComponent: () =>
+      import('./7-debounced-signal/debounced-signal').then((m) => m.DebouncedSignal),
+  },
+  {
+    path: 'resources',
+    loadComponent: () => import('./8-resources/resources').then((m) => m.Resources),
+  },
+  {
+    path: 'webmcp-ai',
+    loadComponent: () => import('./9-webmcp-ai/webmcp-ai').then((m) => m.WebmcpAi),
+  },
+  {
     path: 'signal-forms',
-    loadComponent: () => import('./1-signal-forms/signal-forms').then((m) => m.SignalForms),
+    loadComponent: () => import('./10-signal-forms/signal-forms').then((m) => m.SignalForms),
   },
-  {
-    path: 'resource',
-    loadComponent: () => import('./2-resource/resource').then((m) => m.Resource),
-  },
-  {
-    path: 'ai-features',
-    loadComponent: () => import('./3-ai-features/ai-features').then((m) => m.AiFeatures),
-  },
-  {
-    path: 'service-inject-async',
-    loadComponent: () =>
-      import('./4-service-inject-async/service-inject-async').then((m) => m.ServiceInjectAsync),
-  },
-  {
-    path: 'angular-aria',
-    loadComponent: () => import('./5-angular-aria/angular-aria').then((m) => m.AngularAria),
-  },
-  {
-    path: 'typescript-6',
-    loadComponent: () => import('./6-typescript-6/typescript-6').then((m) => m.TypeScript6),
-  },
-  {
-    path: 'change-detection',
-    loadComponent: () =>
-      import('./7-change-detection/change-detection').then((m) => m.ChangeDetection),
-  },
-  {
-    path: 'templates',
-    loadComponent: () => import('./8-templates/templates').then((m) => m.Templates),
-  },
-  {
-    path: 'signal-debounced',
-    loadComponent: () =>
-      import('./9-signal-debounced/signal-debounced').then((m) => m.SignalDebounced),
-  },
-  { path: '', redirectTo: '/signal-forms', pathMatch: 'full' },
+  { path: '', redirectTo: '/onpush-default', pathMatch: 'full' },
 ]

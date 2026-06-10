@@ -6,6 +6,10 @@ import express from 'express'
 
 const app = express()
 app.use(cors())
+app.use((req, _res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`)
+  next()
+})
 
 const PORT = 3001
 
@@ -69,6 +73,43 @@ app.get('/api/customers/:customerId/orders', async (req, res) => {
   }
 
   res.json(db.orders[customerId] ?? [])
+})
+
+// In-memory store of drafts received via each HTTP backend - lets the page
+// show, after a reload, which save requests actually survived the page death.
+const receivedDrafts: Record<string, { text: string; receivedAt: string }> = {}
+
+app.post('/api/draft', express.json(), (req, res) => {
+  const { backend, text } = req.body as { backend?: string; text?: string }
+  if (!backend || typeof text !== 'string') {
+    res.status(400).json({ error: 'Expected { backend, text }' })
+    return
+  }
+
+  receivedDrafts[backend] = { text, receivedAt: new Date().toISOString() }
+  res.json(receivedDrafts[backend])
+})
+
+app.get('/api/draft', (_req, res) => {
+  res.json(receivedDrafts)
+})
+
+app.delete('/api/draft', (_req, res) => {
+  for (const key of Object.keys(receivedDrafts)) delete receivedDrafts[key]
+  res.json({})
+})
+
+app.post('/api/uploads', async (req, res) => {
+  let receivedBytes = 0
+
+  // Consume the request stream slowly: TCP backpressure throttles the client's
+  // upload, so XHR upload-progress events are visible even on localhost.
+  for await (const chunk of req) {
+    receivedBytes += (chunk as Buffer).length
+    await new Promise((resolve) => setTimeout(resolve, 15))
+  }
+
+  res.json({ receivedBytes })
 })
 
 app.listen(PORT, () => {
