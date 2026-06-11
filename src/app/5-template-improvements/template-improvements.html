@@ -1,26 +1,12 @@
-<p class="mb-4">
-  Angular 22's template compiler gains JS-style comments, spread syntax, multi-case
-  <code>&#64;switch</code> and template arrow functions. Below: a small cart / order-summary UI
-  using each.
-</p>
-
 <div class="border rounded p-4 mb-4">
-  <h2>1. JS-style comments inside element tags</h2>
-  <div
-    // cart preview container
-    class="bg-gray-100 p-2 rounded"
-    /*
-       This block summarizes the cart.
-       Keep comments next to the markup they document.
-    */
-    title="Cart preview"
-  >
+  <h2>JS-style comments inside element tags</h2>
+  <div class="bg-gray-100 p-2 rounded" title="Cart preview">
     Cart preview - {{ totalItems() }} item(s)
   </div>
 </div>
 
 <div class="border rounded p-4 mb-4">
-  <h2>2. Spread syntax - class objects and function arguments</h2>
+  <h2>Spread syntax <app-version-tag version="21.1" /></h2>
   @for (item of cart(); track item.name) {
     <div
       [class]="{
@@ -37,11 +23,14 @@
       <span>{{ lineTotal(item).toFixed(2) }} €</span>
     </div>
   }
-  <p class="mt-2">Cart total: <strong>{{ cartTotal(...cart()).toFixed(2) }} €</strong></p>
+  <p class="mt-2">
+    Cart total: <strong>{{ cartTotal(...cart()).toFixed(2) }} €</strong>
+  </p>
+  <p class="mt-2">{{ [...cart(), featured()].length }} items incl. featured</p>
 </div>
 
 <div class="border rounded p-4 mb-4">
-  <h2>3. <code>&#64;switch</code> with fall-through cases</h2>
+  <h2>Multiple &#64;case values <app-version-tag version="21.1" /></h2>
   <div class="flex flex-wrap gap-2 my-2">
     <button class="bg-primary" (click)="setStatus('Pending')">Pending</button>
     <button class="bg-primary" (click)="setStatus('Processing')">Processing</button>
@@ -63,11 +52,7 @@
 </div>
 
 <div class="border rounded p-4 mb-4">
-  <h2>4. Inline arrow functions - quantity controls</h2>
-  <p class="mb-2">
-    The buttons below mutate the <code>featured</code> signal directly with an arrow function - no
-    component method needed.
-  </p>
+  <h2>Inline arrow functions <app-version-tag version="21.2" /></h2>
   <div class="flex items-center gap-2 my-1">
     <span class="w-32">{{ featured().name }}</span>
     <button
@@ -77,8 +62,25 @@
       −
     </button>
     <span>{{ featured().quantity }}</span>
-    <button class="bg-primary" (click)="featured.update((p) => ({ ...p, quantity: p.quantity + 1 }))">
+    <button
+      class="bg-primary"
+      (click)="featured.update((p) => ({ ...p, quantity: p.quantity + 1 }))"
+    >
       +
     </button>
   </div>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>instanceof in templates <app-version-tag version="21.2" /></h2>
+  <div class="flex flex-wrap gap-2 my-2">
+    <button class="bg-primary" (click)="payment.set('cash')">Pay cash</button>
+    <button class="bg-primary" (click)="payWithGiftCard()">Use gift card</button>
+  </div>
+  @let currentPayment = payment();
+  @if (currentPayment instanceof GiftCard) {
+    <p>Gift card - {{ currentPayment.balance }} €</p>
+  } @else {
+    <p>Cash</p>
+  }
 </div>

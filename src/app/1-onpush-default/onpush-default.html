@@ -1,23 +1,6 @@
-<p class="mb-4">
-  In Angular 22, OnPush is the default. <code>ChangeDetectionStrategy.Default</code> has been
-  renamed to <code>ChangeDetectionStrategy.Eager</code> for code that still needs unconditional
-  checking. Below: a "live orders" counter shown three ways.
-</p>
-
-<button (click)="sayHello()">fff</button>
+<button class="bg-primary mb-4" (click)="sayHello()">Trigger change detection</button>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
   <app-broken-counter />
   <app-eager-counter />
   <app-onpush-counter />
-</div>
-
-<div class="border rounded p-4">
-  <h2>What changed?</h2>
-  <ul>
-    <li>OnPush is the default - no need to declare it explicitly.</li>
-    <li>
-      <code>ChangeDetectionStrategy.Default</code> → <code>ChangeDetectionStrategy.Eager</code>.
-    </li>
-    <li>Signals + OnPush is the recommended path; Eager is the escape hatch for mutation code.</li>
-  </ul>
 </div>

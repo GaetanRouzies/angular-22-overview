@@ -1,14 +1,11 @@
-<p class="mb-4">
-  The same orders endpoint, fetched three different ways. <code>httpResource</code> (declarative
-  URL), <code>rxResource</code> (Observable loader) and <code>resource</code> (Promise loader) all
-  re-run automatically when <code>customerId</code> changes.
-</p>
-
 <div class="flex items-center gap-2 mb-4">
   <span>Select customer:</span>
   @for (id of [1, 2, 3]; track id) {
-    <button [class]="customerId() === id ? 'bg-primary' : 'bg-gray-500'"
-            (click)="customerId.set(id)">#{{ id }}
+    <button
+      [class]="customerId() === id ? 'bg-primary' : 'bg-gray-500'"
+      (click)="customerId.set(id)"
+    >
+      #{{ id }}
     </button>
   }
 </div>
@@ -25,7 +22,9 @@
         <li>{{ order.id }} - {{ order.total }} €</li>
       }
     </ul>
-    <p class="mt-2">Total spent: <strong>{{ total1() }} €</strong></p>
+    <p class="mt-2">
+      Total spent: <strong>{{ total1() }} €</strong>
+    </p>
   }
 </div>
 
@@ -41,7 +40,9 @@
         <li>{{ order.id }} - {{ order.total }} €</li>
       }
     </ul>
-    <p class="mt-2">Total spent: <strong>{{ total2() }} €</strong></p>
+    <p class="mt-2">
+      Total spent: <strong>{{ total2() }} €</strong>
+    </p>
   }
 </div>
 
@@ -57,6 +58,8 @@
         <li>{{ order.id }} - {{ order.total }} €</li>
       }
     </ul>
-    <p class="mt-2">Total spent: <strong>{{ total3() }} €</strong></p>
+    <p class="mt-2">
+      Total spent: <strong>{{ total3() }} €</strong>
+    </p>
   }
 </div>

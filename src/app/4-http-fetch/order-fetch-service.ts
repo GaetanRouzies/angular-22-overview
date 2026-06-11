@@ -11,7 +11,6 @@ export type ReceivedDrafts = Record<string, { text: string; receivedAt: string }
 
 @Service()
 export class OrderFetchService {
-  // The root HttpClient - backed by `fetch` in Angular 22.
   private readonly http = inject(HttpClient)
   readonly baseUrl = 'http://localhost:3001/api'
 
@@ -26,9 +25,6 @@ export class OrderFetchService {
     })
   }
 
-  // `keepalive` is a fetch-only option: the request outlives the page, so a
-  // save fired on `pagehide` still reaches the server. The XHR backend has no
-  // equivalent - the browser kills its in-flight requests on unload.
   saveDraft(text: string): Observable<unknown> {
     return this.http.post(
       `${this.baseUrl}/draft`,

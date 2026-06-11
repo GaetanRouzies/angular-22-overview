@@ -1,5 +1,10 @@
 import { Component, signal } from '@angular/core'
-import { CommonModule } from '@angular/common'
+
+import { VersionTag } from '../shared/version-tag'
+
+class GiftCard {
+  constructor(readonly balance: number) {}
+}
 
 interface CartItem {
   name: string
@@ -13,8 +18,11 @@ type OrderStatus = 'Pending' | 'Processing' | 'Shipped' | 'Delivered'
 @Component({
   selector: 'app-template-improvements',
   templateUrl: './template-improvements.html',
+  imports: [VersionTag],
 })
 export class TemplateImprovements {
+  protected readonly GiftCard = GiftCard
+
   readonly baseItemClasses = { flex: true, 'justify-between': true, 'p-2': true }
 
   cart = signal<CartItem[]>([
@@ -29,6 +37,7 @@ export class TemplateImprovements {
     outOfStock: false,
   })
   orderStatus = signal<OrderStatus>('Processing')
+  payment = signal<string | GiftCard>('cash')
 
   totalItems(): number {
     return this.cart().reduce((sum, item) => sum + item.quantity, 0)
@@ -44,5 +53,9 @@ export class TemplateImprovements {
 
   setStatus(status: OrderStatus) {
     this.orderStatus.set(status)
+  }
+
+  payWithGiftCard() {
+    this.payment.set(new GiftCard(25))
   }
 }

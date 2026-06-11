@@ -1,8 +1,3 @@
-<p class="mb-4">
-  A product creation form modeled with Signal Forms - strongly typed, signal-driven, and with
-  validation expressed as a schema callback.
-</p>
-
 <form class="mb-4">
   <div class="mb-2">
     <label>
@@ -75,4 +70,8 @@
   <h2>Form State</h2>
   <pre class="bg-gray-100 p-2 rounded">{{ productForm().value() | json }}</pre>
   <p>Valid: {{ productForm().valid() }}</p>
+</div>
+
+<div class="border rounded p-4 mt-4">
+  <h2><code>SignalFormControl</code> - Reactive Forms compat <app-version-tag version="21.2" /></h2>
 </div>

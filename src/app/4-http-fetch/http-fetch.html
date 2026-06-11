@@ -1,36 +1,6 @@
-<p class="mb-4">
-  In Angular 22, <code>HttpClient</code> uses the <code>fetch</code> API as its default backend.
-  <code>withFetch()</code> is no longer needed, and the legacy <code>XMLHttpRequest</code> backend
-  becomes an opt-in via <code>withXhr()</code>.
-</p>
-
-<div class="border rounded p-4 mb-4">
-  <h2>Before / after</h2>
-  <pre class="bg-gray-100 p-2 rounded">
-// Angular ≤ 21
-provideHttpClient(withFetch())
-
-// Angular 22 - fetch is the default
-provideHttpClient()
-
-// Escape hatch if you still need XHR (e.g. upload progress events)
-provideHttpClient(withXhr())</pre
-  >
-</div>
-
 <div class="border rounded p-4 mb-4">
   <h2>Same GET, two backends</h2>
-  <p class="mb-2">
-    Both buttons call <code>GET /customers/1/orders</code> on our API. Open the DevTools Network
-    tab: the first request shows up with type <strong>fetch</strong>, the second with type
-    <strong>xhr</strong>. <code>OrderFetchService</code> injects the default
-    <code>HttpClient</code>; <code>OrderXhrService</code> builds its own in one line:
-  </p>
-  <pre class="bg-gray-100 p-2 rounded mb-3">
-private readonly http = new HttpClient(
-  new HttpXhrBackend(&#123; build: () => new XMLHttpRequest() &#125;),
-)</pre
-  >
+  <p class="mb-2">Open the Network tab</p>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
       <button class="bg-primary" (click)="loadWithFetch()">GET via fetch (default)</button>
@@ -60,13 +30,7 @@ private readonly http = new HttpClient(
 </div>
 
 <div class="border rounded p-4 mb-4">
-  <h2>When you still need XHR: upload progress</h2>
-  <p class="mb-2">
-    The <code>fetch</code> API has no upload-progress events, so <code>reportProgress</code> only
-    works for uploads on the XHR backend. Both buttons POST the same 5 MB payload to
-    <code>/uploads</code>: with XHR the bar fills as bytes leave the browser, with fetch it jumps
-    straight from 0% to 100% when the response arrives.
-  </p>
+  <h2>Upload progress (XHR only)</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
       <button class="bg-primary mb-2" (click)="uploadWithXhr()">Upload 5 MB via XHR</button>
@@ -96,17 +60,8 @@ private readonly http = new HttpClient(
 </div>
 
 <div class="border rounded p-4">
-  <h2>When fetch wins: keepalive autosave</h2>
-  <p class="mb-2">
-    <code>keepalive</code> is a fetch-only request option: the request outlives the page. Type a
-    draft below, then <strong>reload the page</strong> - on <code>pagehide</code> the draft is saved
-    twice, once per backend. The browser kills the in-flight XHR, but the
-    <code>keepalive</code> request still reaches the server. Real-world uses: autosave, analytics,
-    telemetry.
-  </p>
-  <pre class="bg-gray-100 p-2 rounded mb-3">
-this.http.post(url, draft, &#123; keepalive: true &#125;)</pre
-  >
+  <h2>Keepalive autosave (fetch wins)</h2>
+  <p class="mb-2">Type a draft, then reload the page</p>
 
   <label for="draft" class="block mb-1">Draft</label>
   <textarea
@@ -133,7 +88,7 @@ this.http.post(url, draft, &#123; keepalive: true &#125;)</pre
       @if (xhrDraft(); as d) {
         <strong>"{{ d.text }}"</strong> at {{ d.receivedAt }}
       } @else {
-        <em>nothing - the request was killed with the page</em>
+        <em>nothing</em>
       }
     </li>
   </ul>

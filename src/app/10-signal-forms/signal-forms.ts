@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormField, form, min, minLength, required } from '@angular/forms/signals'
+import { VersionTag } from '../shared/version-tag'
 
 interface NewProduct {
   name: string
@@ -12,7 +13,7 @@ interface NewProduct {
 
 @Component({
   selector: 'app-signal-forms',
-  imports: [CommonModule, FormField],
+  imports: [CommonModule, FormField, VersionTag],
   templateUrl: './signal-forms.html',
 })
 export class SignalForms {

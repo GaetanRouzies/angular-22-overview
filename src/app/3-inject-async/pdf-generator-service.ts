@@ -1,9 +1,7 @@
 import { Service } from '@angular/core'
 import type { Product } from '../2-service-decorator/product-store-service'
 
-// Pretend this service ships with a heavy PDF rendering library.
-// Loading it eagerly would bloat the initial bundle, so we let
-// `injectAsync` pull it in on demand - see `inject-async.ts`.
+// Pretend this ships with a heavy PDF rendering library.
 @Service()
 export class PdfGeneratorService {
   generateInvoice(products: readonly Product[]): string {

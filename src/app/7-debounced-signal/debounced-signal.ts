@@ -1,5 +1,4 @@
 import { Component, computed, debounced, resource, signal } from '@angular/core'
-import { CommonModule } from '@angular/common'
 
 interface SearchResult {
   id: number
@@ -11,19 +10,12 @@ interface SearchResult {
   templateUrl: './debounced-signal.html',
 })
 export class DebouncedSignal {
-  // The raw signal updates on every keystroke.
   query = signal('')
 
-  // `debounced` returns a Resource whose value only updates once the source
-  // signal stops changing for the given wait (here: 400ms).
   debouncedQuery = debounced(this.query, 400)
 
-  // Number of characters typed vs. number of "settled" searches - makes the
-  // debounce visible: the raw counter races ahead while the debounced one lags.
   keystrokes = signal(0)
 
-  // A resource keyed on the *debounced* value, so we only hit the loader once
-  // the user pauses typing instead of on every keystroke.
   results = resource({
     params: () => this.debouncedQuery.value(),
     loader: ({ params }) => this.search(params),

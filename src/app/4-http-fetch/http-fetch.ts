@@ -1,5 +1,4 @@
 import { Component, computed, inject, signal, WritableSignal } from '@angular/core'
-import { CommonModule } from '@angular/common'
 import { HttpEvent, HttpEventType } from '@angular/common/http'
 import { firstValueFrom } from 'rxjs'
 import { Order, OrderFetchService, ReceivedDrafts } from './order-fetch-service'
@@ -45,8 +44,6 @@ export class HttpFetch {
     this.trackUpload(this.orderXhrService, this.xhrUploadProgress)
   }
 
-  // The page is dying: save the draft through both backends. Only the
-  // fetch request carries `keepalive: true`, so only it survives the unload.
   saveDraftOnExit() {
     const text = this.draft().trim()
     if (!text) return
@@ -64,9 +61,6 @@ export class HttpFetch {
     this.receivedDrafts.set({})
   }
 
-  // POST a 5 MB payload with `reportProgress`. The XHR backend emits
-  // UploadProgress events as bytes leave the browser; the fetch backend has no
-  // upload-progress API, so its bar jumps from 0% straight to 100%.
   private trackUpload(
     service: OrderFetchService | OrderXhrService,
     progress: WritableSignal<number | null>,

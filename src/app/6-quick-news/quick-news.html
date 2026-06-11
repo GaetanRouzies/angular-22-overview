@@ -1,63 +1,23 @@
-<p class="mb-4">
-  A round-up of the smaller Angular 22 news: tooling, accessibility, router, hydration and
-  testing.
-</p>
-
 <div class="border rounded p-4 mb-4">
   <h2>1. TypeScript 6 &amp; Node</h2>
   <ul>
-    <li>TypeScript 6.0 is supported (and becomes the minimum for new workspaces).</li>
-    <li>Minimum Node version bumped to 22 LTS - Node 20 support is dropped.</li>
-    <li>
-      TS 6 highlights usable in Angular code: <code>satisfies</code> on config maps,
-      <code>const</code> type parameters, smarter narrowing through aliased conditions.
-    </li>
+    <li>TypeScript 6.0 supported</li>
+    <li>Minimum Node version: 22 LTS</li>
   </ul>
 </div>
 
 <div class="border rounded p-4 mb-4">
   <h2>2. <code>&#64;angular/aria</code> is stable</h2>
-  <p>
-    The package graduates from experimental with 12 stable headless patterns: Toolbar, Tabs, Tree,
-    Menu, Listbox, Combobox, Accordion, Radio Group, Dialog, Tooltip, Disclosure and Grid. You keep
-    your own markup and styles; the directives bring the roles, keyboard navigation and focus
-    management.
-  </p>
 </div>
 
 <div class="border rounded p-4 mb-4">
-  <h2>3. Trap: <code>paramsInheritanceStrategy</code> default change</h2>
-  <p class="mb-2">
-    The router default flips from <code>'emptyOnly'</code> to <code>'always'</code>: child routes
-    now inherit <em>all</em> parent route params and data. Watch out for name collisions - a parent
-    <code>:id</code> now shows up in every child's <code>params</code>.
-  </p>
-  <pre class="bg-gray-100 p-2 rounded">// Restore the old behavior if needed:
-provideRouter(routes, withRouterConfig(&#123;
-  paramsInheritanceStrategy: 'emptyOnly',
-&#125;))</pre>
+  <h2>3. Trap: <code>paramsInheritanceStrategy</code> ('emptyOnly' &rarr; 'always')</h2>
 </div>
 
 <div class="border rounded p-4 mb-4">
   <h2>4. Incremental hydration is stable</h2>
-  <p class="mb-2">
-    With SSR, <code>&#64;defer</code> blocks can now hydrate independently instead of hydrating the
-    whole page at once - less JavaScript up front, faster interactivity.
-  </p>
-  <pre class="bg-gray-100 p-2 rounded">&#64;defer (hydrate on viewport) &#123;
-  &lt;app-reviews /&gt;
-&#125; &#64;placeholder &#123;
-  &lt;p&gt;Loading reviews…&lt;/p&gt;
-&#125;</pre>
 </div>
 
 <div class="border rounded p-4">
   <h2>5. <code>TestBed.getLastFixture()</code></h2>
-  <p class="mb-2">
-    New testing helper: retrieve the most recently created component fixture, even when it was
-    created indirectly (e.g. by a test harness or a router navigation in the test).
-  </p>
-  <pre class="bg-gray-100 p-2 rounded">await router.navigate(['/products/1'])
-const fixture = TestBed.getLastFixture()
-expect(fixture.nativeElement.textContent).toContain('Espresso')</pre>
 </div>

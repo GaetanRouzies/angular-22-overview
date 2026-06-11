@@ -1,15 +1,7 @@
-<p class="mb-4">
-  <code>injectAsync()</code> lazy-loads a service behind a dynamic <code>import()</code>, keeping
-  heavy dependencies out of the initial bundle. Both demos below consume the product catalog from
-  the previous chapter (same <code>ProductStoreService</code> singleton).
-</p>
+<p class="mb-4">Open the Network tab</p>
 
 <div class="border rounded p-4 mb-4">
-  <h2>injectAsync() - PdfGeneratorService (lazy + prefetch: onIdle)</h2>
-  <p class="mb-2">
-    With <code>prefetch: onIdle</code>, the module is warmed up during browser idle time, so the
-    first click is already instant.
-  </p>
+  <h2>injectAsync() - PdfGeneratorService (prefetch: onIdle)</h2>
   <button class="bg-primary" (click)="generateInvoice()">Generate invoice</button>
   @if (lastInvoice()) {
     <pre class="bg-gray-100 p-2 rounded mt-2">{{ lastInvoice() }}</pre>
@@ -17,11 +9,7 @@
 </div>
 
 <div class="border rounded p-4">
-  <h2>injectAsync() - CsvExporterService (lazy, no prefetch)</h2>
-  <p class="mb-2">
-    Without <code>prefetch</code>, nothing loads until you click: the first click triggers the
-    dynamic <code>import()</code>, then subsequent clicks reuse the resolved instance.
-  </p>
+  <h2>injectAsync() - CsvExporterService (no prefetch)</h2>
   <button class="bg-primary" (click)="exportCsv()">Export CSV</button>
   @if (lastCsv()) {
     <pre class="bg-gray-100 p-2 rounded mt-2">{{ lastCsv() }}</pre>

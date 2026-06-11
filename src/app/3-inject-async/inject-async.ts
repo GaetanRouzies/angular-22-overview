@@ -1,5 +1,4 @@
 import { Component, inject, injectAsync, onIdle, signal } from '@angular/core'
-import { CommonModule } from '@angular/common'
 import { ProductStoreService } from '../2-service-decorator/product-store-service'
 
 @Component({
