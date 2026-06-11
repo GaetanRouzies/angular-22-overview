@@ -5,11 +5,9 @@ import { Component, OnInit } from '@angular/core'
   templateUrl: './broken-counter.html',
 })
 export class BrokenCounter implements OnInit {
-  pendingOrders = 0
+  counter = 0
 
   ngOnInit() {
-    setInterval(() => {
-      this.pendingOrders++
-    }, 1500)
+    setInterval(() => this.counter++, 1500)
   }
 }

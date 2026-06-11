@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core'
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core'
 import { provideHttpClient } from '@angular/common/http'
 import { provideRouter } from '@angular/router'
 import { provideSignalFormsConfig } from '@angular/forms/signals'
@@ -10,6 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    provideZoneChangeDetection(), // Zone.js added only to demonstrate the 9-onpush-default chapter
     provideSignalFormsConfig({
       classes: { ...NG_STATUS_CLASSES },
     }),

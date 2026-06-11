@@ -1,15 +1,14 @@
-import { Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component } from '@angular/core'
 import { EagerCounter } from './eager-counter/eager-counter'
 import { BrokenCounter } from './broken-counter/broken-counter'
-import { OnPushCounter } from './onpush-counter/onpush-counter'
+import { SignalCounter } from './signal-counter/signal-counter'
 
 @Component({
   selector: 'app-onpush-default',
-  imports: [EagerCounter, BrokenCounter, OnPushCounter],
+  imports: [EagerCounter, BrokenCounter, SignalCounter],
   templateUrl: './onpush-default.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class OnPushDefault {
-  sayHello() {
-    console.log('hello')
-  }
+
 }

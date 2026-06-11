@@ -6,11 +6,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class EagerCounter implements OnInit {
-  pendingOrders = 0
+  counter = 0
 
   ngOnInit() {
-    setInterval(() => {
-      this.pendingOrders++
-    }, 1500)
+    setInterval(() => this.counter++, 1500)
   }
 }
