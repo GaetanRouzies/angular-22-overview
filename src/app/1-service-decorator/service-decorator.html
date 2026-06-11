@@ -1,0 +1,28 @@
+<div class="border rounded p-4 mb-4">
+  <h2>&#64;Service() - ProductService</h2>
+  <button class="bg-primary mb-3" (click)="addProduct()">Add product</button>
+  <table class="w-full text-left">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col"><span class="sr-only">Actions</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (product of products(); track product.id) {
+        <tr>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price.toFixed(2) }} €</td>
+          <td>
+            <button class="bg-gray-500 my-1" (click)="removeProduct(product.id)">Remove</button>
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="3" class="text-center">Catalog is empty.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

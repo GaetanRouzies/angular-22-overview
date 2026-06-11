@@ -1,0 +1,94 @@
+<form class="mb-4">
+  <div class="mb-2">
+    <label for="name" class="block mb-1">Name</label>
+    <input id="name" [formField]="productForm.name" />
+    @if (productForm.name().invalid() && productForm.name().touched()) {
+      <p>{{ productForm.name().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label for="sku" class="block mb-1">SKU</label>
+    <input id="sku" [formField]="productForm.sku" />
+    @if (productForm.sku().invalid() && productForm.sku().touched()) {
+      <p>{{ productForm.sku().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label for="price" class="block mb-1">Price</label>
+    <input
+      id="price"
+      type="number"
+      step="0.01"
+      [formField]="productForm.price"
+    />
+    @if (productForm.price().invalid() && productForm.price().touched()) {
+      <p>{{ productForm.price().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label for="category" class="block mb-1">Category</label>
+    <select id="category" [formField]="productForm.category">
+      <option value="">Select a category…</option>
+      @for (c of categories; track c) {
+        <option [value]="c">{{ c }}</option>
+      }
+    </select>
+    @if (productForm.category().invalid() && productForm.category().touched()) {
+      <p>{{ productForm.category().errors()[0].message }}</p>
+    }
+  </div>
+
+  <div class="mb-2">
+    <input id="in-stock" type="checkbox" class="mr-2" [formField]="productForm.inStock" />
+    <label for="in-stock">In stock</label>
+  </div>
+
+  <button
+    class="bg-primary"
+    type="button"
+    (click)="onSubmit()"
+    [disabled]="productForm().invalid()"
+  >
+    Create product
+  </button>
+</form>
+
+<div class="border rounded p-4">
+  <h2>Form State</h2>
+  <pre class="bg-gray-100 p-2 rounded">{{ productForm().value() | json }}</pre>
+  <p>Valid: {{ productForm().valid() }}</p>
+</div>
+
+<div class="border rounded p-4 mt-4">
+  <h2><code>SignalFormControl</code> - Reactive Forms compat <span class="tag">v21.2</span></h2>
+
+  <form [formGroup]="supplierForm" class="mt-2">
+    <div class="mb-2">
+      <label for="supplier-name" class="block mb-1">Supplier name (SignalFormControl)</label>
+      <input id="supplier-name" [formField]="supplierName.fieldTree" />
+      @if (supplierName.fieldTree().invalid() && supplierName.fieldTree().touched()) {
+        <p>{{ supplierName.fieldTree().errors()[0].message }}</p>
+      }
+    </div>
+
+    <div class="mb-2">
+      <label for="supplier-email" class="block mb-1">Email (classic FormControl)</label>
+      <input id="supplier-email" type="email" formControlName="email" />
+    </div>
+
+    <button
+      class="bg-primary"
+      type="button"
+      (click)="onSupplierSubmit()"
+      [disabled]="supplierForm.invalid"
+    >
+      Save supplier
+    </button>
+  </form>
+
+  <p class="mt-2">FormGroup value: {{ supplierForm.value | json }}</p>
+  <p>FormGroup valid: {{ supplierForm.valid }}</p>
+</div>

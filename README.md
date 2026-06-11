@@ -1,59 +1,40 @@
-# Angular22Overview
+# Angular 22 Overview
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.0.
+This project showcases all the new features introduced in Angular 22. Each feature is demonstrated in its own dedicated folder within the `src/app` directory.
 
-## Development server
+## Overview
 
-To start a local development server, run:
+This is an interactive demonstration application that presents the latest Angular 22 features through practical examples. Navigate through the application to explore each feature in detail.
 
-```bash
-ng serve
+## Angular 22 New Features
+
+Each feature is organized in its own numbered folder for easy navigation:
+
+1. **@Service Decorator** (`1-service-decorator/`) - New @Service decorator for injectable services
+2. **injectAsync** (`2-inject-async/`) - Lazy service injection with prefetch strategies
+3. **HTTP Fetch** (`3-http-fetch/`) - Fetch API as the default HttpClient backend
+4. **Template Improvements** (`4-template-improvements/`) - New template syntax capabilities
+5. **Debounced Signals** (`5-debounced-signal/`) - New debounced() signal primitive
+6. **Resources** (`6-resources/`) - resource, rxResource & httpResource APIs
+7. **WebMCP & AI** (`7-webmcp-ai/`) - WebMCP tools to expose the app to AI assistants
+8. **OnPush by Default** (`8-onpush-default/`) - OnPush change detection as the default strategy
+9. **Signal Forms** (`9-signal-forms/`) - Signal-based forms (experimental)
+
+## Project Structure
+
+```
+src/app/
+├── 1-service-decorator/    # @Service decorator
+├── 2-inject-async/         # injectAsync lazy injection
+├── 3-http-fetch/           # Fetch-based HttpClient
+├── 4-template-improvements/  # Template improvements
+├── 5-debounced-signal/     # debounced() signals
+├── 6-resources/            # resource & httpResource
+├── 7-webmcp-ai/            # WebMCP & AI
+├── 8-onpush-default/       # OnPush by default
+├── 9-signal-forms/         # Signal-based forms
+├── navbar/                 # Navigation component
+└── shared/                 # Shared utilities
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Each numbered folder contains a standalone component demonstrating its respective Angular 22 feature.

@@ -19,8 +19,12 @@ body {
   border-color: var(--color-border) !important;
 }
 
-input {
-  border-color: var(--color-border) !important;
+.tag {
+  @apply ml-2 inline-block rounded-full border px-2 py-0.5 align-middle text-xs text-gray-500;
+}
+
+input, select {
+  @apply border border-border! px-2 py-1 rounded;
 }
 
 input:hover {

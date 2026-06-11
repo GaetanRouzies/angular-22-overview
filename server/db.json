@@ -19,6 +19,11 @@
       "company": { "name": "Compiler Works" }
     }
   },
+  "products": [
+    { "id": 1, "name": "Espresso", "price": 2.5 },
+    { "id": 2, "name": "Cappuccino", "price": 3.5 },
+    { "id": 3, "name": "Croissant", "price": 2.0 }
+  ],
   "orders": {
     "1": [
       { "id": "ORD-1-100", "total": 42 },

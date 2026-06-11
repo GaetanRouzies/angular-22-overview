@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "server": "tsx watch --include 'server/db.json' server/orders-api.ts",
+    "server": "tsx watch --include 'server/db.json' server/server.ts",
     "test": "ng test",
     "format": "prettier --write \"src/**/*.{ts,html,scss,json}\"",
     "format:check": "prettier --check \"src/**/*.{ts,html,scss,json}\""

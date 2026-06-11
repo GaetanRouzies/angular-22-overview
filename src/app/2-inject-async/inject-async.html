@@ -1,0 +1,17 @@
+<p class="mb-4">Open the Network tab</p>
+
+<div class="border rounded p-4 mb-4">
+  <h2>injectAsync() - PdfGeneratorService (prefetch: onIdle)</h2>
+  <button class="bg-primary" (click)="generateInvoice()">Generate invoice</button>
+  @if (invoice()) {
+    <pre class="bg-gray-100 p-2 rounded mt-2">{{ invoice() }}</pre>
+  }
+</div>
+
+<div class="border rounded p-4">
+  <h2>injectAsync() - CsvExporterService (no prefetch)</h2>
+  <button class="bg-primary" (click)="exportCsv()">Export CSV</button>
+  @if (csv()) {
+    <pre class="bg-gray-100 p-2 rounded mt-2">{{ csv() }}</pre>
+  }
+</div>

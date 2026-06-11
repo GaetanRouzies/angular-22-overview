@@ -1,6 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core'
 import { Router, NavigationEnd } from '@angular/router'
-import { CommonModule } from '@angular/common'
 import { filter } from 'rxjs'
 
 interface Example {
@@ -16,16 +15,15 @@ export class Navbar {
   private router = inject(Router)
 
   examples: Example[] = [
-    { path: 'onpush-default', title: '1. OnPush by Default' },
-    { path: 'service-decorator', title: '2. @Service Decorator' },
-    { path: 'inject-async', title: '3. injectAsync' },
-    { path: 'http-fetch', title: '4. HTTP Fetch' },
-    { path: 'template-improvements', title: '5. Template Improvements' },
-    { path: 'quick-news', title: '6. Quick News' },
-    { path: 'debounced-signal', title: '7. Debounced Signals' },
-    { path: 'resources', title: '8. resource & httpResource' },
-    { path: 'webmcp-ai', title: '9. WebMCP & AI' },
-    { path: 'signal-forms', title: '10. Signal Forms' },
+    { path: 'service-decorator', title: '1. @Service Decorator' },
+    { path: 'inject-async', title: '2. injectAsync' },
+    { path: 'http-fetch', title: '3. HTTP Fetch' },
+    { path: 'template-improvements', title: '4. Template Improvements' },
+    { path: 'debounced-signal', title: '5. Debounced Signals' },
+    { path: 'resources', title: '6. resource & httpResource' },
+    { path: 'webmcp-ai', title: '7. WebMCP & AI' },
+    { path: 'onpush-default', title: '8. OnPush by Default' },
+    { path: 'signal-forms', title: '9. Signal Forms' },
   ]
 
   currentPath = signal<string>('')
@@ -34,11 +32,11 @@ export class Navbar {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        const path = event.urlAfterRedirects.replace('/', '') || 'onpush-default'
+        const path = event.urlAfterRedirects.replace('/', '') || 'service-decorator'
         this.currentPath.set(path)
       })
 
-    const initialPath = this.router.url.replace('/', '') || 'onpush-default'
+    const initialPath = this.router.url.replace('/', '') || 'service-decorator'
     this.currentPath.set(initialPath)
   }
 
