@@ -1,46 +1,24 @@
 import { Routes } from '@angular/router'
 
+import { ServiceDecorator } from './1-service-decorator/service-decorator'
+import { InjectAsync } from './2-inject-async/inject-async'
+import { HttpFetchVsXhr } from './3-http-fetch-vs-xhr/http-fetch-vs-xhr'
+import { TemplateImprovements } from './4-template-improvements/template-improvements'
+import { DebouncedSignal } from './5-debounced-signal/debounced-signal'
+import { Resources } from './6-resources/resources'
+import { AgentSkills } from './7-agent-skills/agent-skills'
+import { OnPushDefault } from './8-onpush-default/onpush-default'
+import { SignalForms } from './9-signal-forms/signal-forms'
+
 export const routes: Routes = [
-  {
-    path: 'service-decorator',
-    loadComponent: () =>
-      import('./1-service-decorator/service-decorator').then((m) => m.ServiceDecorator),
-  },
-  {
-    path: 'inject-async',
-    loadComponent: () => import('./2-inject-async/inject-async').then((m) => m.InjectAsync),
-  },
-  {
-    path: 'http-fetch',
-    loadComponent: () => import('./3-http-fetch/http-fetch').then((m) => m.HttpFetch),
-  },
-  {
-    path: 'template-improvements',
-    loadComponent: () =>
-      import('./4-template-improvements/template-improvements').then(
-        (m) => m.TemplateImprovements,
-      ),
-  },
-  {
-    path: 'debounced-signal',
-    loadComponent: () =>
-      import('./5-debounced-signal/debounced-signal').then((m) => m.DebouncedSignal),
-  },
-  {
-    path: 'resources',
-    loadComponent: () => import('./6-resources/resources').then((m) => m.Resources),
-  },
-  {
-    path: 'webmcp-ai',
-    loadComponent: () => import('./7-webmcp-ai/webmcp-ai').then((m) => m.WebmcpAi),
-  },
-  {
-    path: 'onpush-default',
-    loadComponent: () => import('./8-onpush-default/onpush-default').then((m) => m.OnPushDefault),
-  },
-  {
-    path: 'signal-forms',
-    loadComponent: () => import('./9-signal-forms/signal-forms').then((m) => m.SignalForms),
-  },
+  { path: 'service-decorator', component: ServiceDecorator },
+  { path: 'inject-async', component: InjectAsync },
+  { path: 'http-fetch-vs-xhr', component: HttpFetchVsXhr },
+  { path: 'template-improvements', component: TemplateImprovements },
+  { path: 'debounced-signal', component: DebouncedSignal },
+  { path: 'resources', component: Resources },
+  { path: 'agent-skills', component: AgentSkills },
+  { path: 'onpush-default', component: OnPushDefault },
+  { path: 'signal-forms', component: SignalForms },
   { path: '', redirectTo: '/service-decorator', pathMatch: 'full' },
 ]

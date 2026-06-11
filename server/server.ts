@@ -119,7 +119,7 @@ app.delete('/api/products/:id', async (req, res) => {
 
 // In-memory store of drafts received via each HTTP backend - lets the page
 // show, after a reload, which save requests actually survived the page death.
-const receivedDrafts: Record<string, { text: string; receivedAt: string }> = {}
+let receivedDrafts: { backend: string; text: string; receivedAt: string }[] = []
 
 app.post('/api/draft', express.json(), (req, res) => {
   const { backend, text } = req.body as { backend?: string; text?: string }
@@ -128,8 +128,10 @@ app.post('/api/draft', express.json(), (req, res) => {
     return
   }
 
-  receivedDrafts[backend] = { text, receivedAt: new Date().toISOString() }
-  res.json(receivedDrafts[backend])
+  const draft = { backend, text, receivedAt: new Date().toISOString() }
+  receivedDrafts = receivedDrafts.filter((d) => d.backend !== backend)
+  receivedDrafts.push(draft)
+  res.json(draft)
 })
 
 app.get('/api/draft', (_req, res) => {
@@ -137,8 +139,8 @@ app.get('/api/draft', (_req, res) => {
 })
 
 app.delete('/api/draft', (_req, res) => {
-  for (const key of Object.keys(receivedDrafts)) delete receivedDrafts[key]
-  res.json({})
+  receivedDrafts = []
+  res.json([])
 })
 
 app.post('/api/uploads', async (req, res) => {

@@ -17,11 +17,11 @@ export class Navbar {
   examples: Example[] = [
     { path: 'service-decorator', title: '1. @Service Decorator' },
     { path: 'inject-async', title: '2. injectAsync' },
-    { path: 'http-fetch', title: '3. HTTP Fetch' },
+    { path: 'http-fetch-vs-xhr', title: '3. HTTP Fetch' },
     { path: 'template-improvements', title: '4. Template Improvements' },
     { path: 'debounced-signal', title: '5. Debounced Signals' },
     { path: 'resources', title: '6. resource & httpResource' },
-    { path: 'webmcp-ai', title: '7. WebMCP & AI' },
+    { path: 'agent-skills', title: '7. Agent Skills' },
     { path: 'onpush-default', title: '8. OnPush by Default' },
     { path: 'signal-forms', title: '9. Signal Forms' },
   ]

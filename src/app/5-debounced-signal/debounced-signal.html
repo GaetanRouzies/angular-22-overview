@@ -1,17 +1,15 @@
-<div class="border rounded p-4 mb-4">
-  <h2>Raw vs. debounced value</h2>
+<h2>Raw vs. debounced value</h2>
 
-  <div>
-    <label for="search" class="block mb-1">Search</label>
-    <input
-      id="search"
-      type="text"
-      class="mb-3"
-      placeholder="Try typing 'berry'…"
-      [(ngModel)]="search"
-    />
-  </div>
-
-  <dd>Search value : {{ search() }}</dd>
-  <dd>Debounced Search value : {{ debouncedSearch.value() }}</dd>
+<div>
+  <label for="search">Search</label>
+  <input
+    id="search"
+    type="text"
+    class="mb-3"
+    placeholder="Try typing 'berry'…"
+    [(ngModel)]="search"
+  />
 </div>
+
+<div>Search value : {{ search() }}</div>
+<div>Debounced Search value : {{ debouncedSearch.value() }}</div>

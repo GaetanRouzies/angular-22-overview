@@ -1,6 +1,6 @@
 <form class="mb-4">
   <div class="mb-2">
-    <label for="name" class="block mb-1">Name</label>
+    <label for="name">Name</label>
     <input id="name" [formField]="productForm.name" />
     @if (productForm.name().invalid() && productForm.name().touched()) {
       <p>{{ productForm.name().errors()[0].message }}</p>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="mb-2">
-    <label for="sku" class="block mb-1">SKU</label>
+    <label for="sku">SKU</label>
     <input id="sku" [formField]="productForm.sku" />
     @if (productForm.sku().invalid() && productForm.sku().touched()) {
       <p>{{ productForm.sku().errors()[0].message }}</p>
@@ -16,7 +16,7 @@
   </div>
 
   <div class="mb-2">
-    <label for="price" class="block mb-1">Price</label>
+    <label for="price">Price</label>
     <input
       id="price"
       type="number"
@@ -29,7 +29,7 @@
   </div>
 
   <div class="mb-2">
-    <label for="category" class="block mb-1">Category</label>
+    <label for="category">Category</label>
     <select id="category" [formField]="productForm.category">
       <option value="">Select a category…</option>
       @for (c of categories; track c) {
@@ -67,7 +67,7 @@
 
   <form [formGroup]="supplierForm" class="mt-2">
     <div class="mb-2">
-      <label for="supplier-name" class="block mb-1">Supplier name (SignalFormControl)</label>
+      <label for="supplier-name">Supplier name (SignalFormControl)</label>
       <input id="supplier-name" [formField]="supplierName.fieldTree" />
       @if (supplierName.fieldTree().invalid() && supplierName.fieldTree().touched()) {
         <p>{{ supplierName.fieldTree().errors()[0].message }}</p>
@@ -75,7 +75,7 @@
     </div>
 
     <div class="mb-2">
-      <label for="supplier-email" class="block mb-1">Email (classic FormControl)</label>
+      <label for="supplier-email">Email (classic FormControl)</label>
       <input id="supplier-email" type="email" formControlName="email" />
     </div>
 

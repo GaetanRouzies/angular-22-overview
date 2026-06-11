@@ -12,11 +12,11 @@ Each feature is organized in its own numbered folder for easy navigation:
 
 1. **@Service Decorator** (`1-service-decorator/`) - New @Service decorator for injectable services
 2. **injectAsync** (`2-inject-async/`) - Lazy service injection with prefetch strategies
-3. **HTTP Fetch** (`3-http-fetch/`) - Fetch API as the default HttpClient backend
+3. **HTTP Fetch** (`3-http-fetch-vs-xhr/`) - Fetch API as the default HttpClient backend
 4. **Template Improvements** (`4-template-improvements/`) - New template syntax capabilities
 5. **Debounced Signals** (`5-debounced-signal/`) - New debounced() signal primitive
 6. **Resources** (`6-resources/`) - resource, rxResource & httpResource APIs
-7. **WebMCP & AI** (`7-webmcp-ai/`) - WebMCP tools to expose the app to AI assistants
+7. **Agent Skills** (`7-agent-skills/`) - Official Agent Skills for AI coding agents
 8. **OnPush by Default** (`8-onpush-default/`) - OnPush change detection as the default strategy
 9. **Signal Forms** (`9-signal-forms/`) - Signal-based forms (experimental)
 
@@ -26,11 +26,11 @@ Each feature is organized in its own numbered folder for easy navigation:
 src/app/
 ├── 1-service-decorator/    # @Service decorator
 ├── 2-inject-async/         # injectAsync lazy injection
-├── 3-http-fetch/           # Fetch-based HttpClient
+├── 3-http-fetch-vs-xhr/    # Fetch-based HttpClient
 ├── 4-template-improvements/  # Template improvements
 ├── 5-debounced-signal/     # debounced() signals
 ├── 6-resources/            # resource & httpResource
-├── 7-webmcp-ai/            # WebMCP & AI
+├── 7-agent-skills/         # Agent Skills
 ├── 8-onpush-default/       # OnPush by default
 ├── 9-signal-forms/         # Signal-based forms
 ├── navbar/                 # Navigation component
