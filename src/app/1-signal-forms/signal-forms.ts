@@ -6,10 +6,8 @@ import { SignalFormControl } from '@angular/forms/signals/compat'
 
 interface Product {
   name: string
-  sku: string
   price: number
   category: string
-  inStock: boolean
 }
 
 @Component({
@@ -22,17 +20,15 @@ export class SignalForms {
 
   productModel = signal<Product>({
     name: '',
-    sku: '',
     price: 0,
     category: '',
-    inStock: true,
   })
 
   productForm = form(this.productModel, (schema) => {
     required(schema.name, { message: 'Name is required' })
     minLength(schema.name, 3, { message: 'Name must be at least 3 characters' })
-    required(schema.sku, { message: 'SKU is required' })
     required(schema.category, { message: 'Category is required' })
+    required(schema.price, { message: 'Price is required' })
     min(schema.price, 0.01, { message: 'Price must be greater than 0' })
   })
 
@@ -43,22 +39,19 @@ export class SignalForms {
   }
 
   // A FormControl backed by Signal Forms rules, usable inside a classic FormGroup
-  supplierName = new SignalFormControl('', (name) => {
-    required(name, { message: 'Supplier name is required' })
-    minLength(name, 2, { message: 'At least 2 characters' })
-  })
-
-  supplierForm = new FormGroup({
-    name: this.supplierName,
-    email: new FormControl('', {
+  userForm = new FormGroup({
+    firstName: new SignalFormControl('', (firstName) => {
+      required(firstName)
+    }),
+    lastName: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.email],
+      validators: [Validators.required],
     }),
   })
 
-  onSupplierSubmit() {
-    if (this.supplierForm.valid) {
-      console.log('Supplier saved:', this.supplierForm.getRawValue())
+  onUserSubmit() {
+    if (this.userForm.valid) {
+      console.log('User saved:', this.userForm.getRawValue())
     }
   }
 }

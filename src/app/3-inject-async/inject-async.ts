@@ -13,12 +13,12 @@ export class InjectAsync {
   ]
 
   asyncPdfGeneratorService = injectAsync(
-    () => import('./pdf-generator-service').then((m) => m.PdfGeneratorService),
+    () => import('./pdf-generator-service').then((module) => module.PdfGeneratorService),
     { prefetch: onIdle },
   )
 
   asyncCsvExporterService = injectAsync(() =>
-    import('./csv-exporter-service').then((m) => m.CsvExporterService),
+    import('./csv-exporter-service').then((module) => module.CsvExporterService),
   )
 
   invoice = signal<string>('')

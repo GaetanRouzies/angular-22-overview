@@ -15,15 +15,15 @@ export class Navbar {
   private router = inject(Router)
 
   examples: Example[] = [
-    { path: 'service-decorator', title: '1. @Service Decorator' },
-    { path: 'inject-async', title: '2. injectAsync' },
-    { path: 'http-fetch-vs-xhr', title: '3. HTTP Fetch' },
-    { path: 'template-improvements', title: '4. Template Improvements' },
-    { path: 'debounced-signal', title: '5. Debounced Signals' },
-    { path: 'resources', title: '6. resource & httpResource' },
-    { path: 'agent-skills', title: '7. Agent Skills' },
-    { path: 'onpush-default', title: '8. OnPush by Default' },
-    { path: 'signal-forms', title: '9. Signal Forms' },
+    { path: 'signal-forms', title: '1. Signal Forms' },
+    { path: 'service-decorator', title: '2. @Service Decorator' },
+    { path: 'inject-async', title: '3. injectAsync' },
+    { path: 'agent-skills', title: '4. Agent Skills' },
+    { path: 'template-improvements', title: '5. Template Improvements' },
+    { path: 'debounced-signal', title: '6. Debounced Signals' },
+    { path: 'resources', title: '7. resource & httpResource' },
+    { path: 'http-fetch-vs-xhr', title: '8. HTTP Fetch' },
+    { path: 'onpush-default', title: '9. OnPush by Default' },
   ]
 
   currentPath = signal<string>('')
@@ -32,20 +32,20 @@ export class Navbar {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        const path = event.urlAfterRedirects.replace('/', '') || 'service-decorator'
+        const path = event.urlAfterRedirects.replace('/', '') || 'signal-forms'
         this.currentPath.set(path)
       })
 
-    const initialPath = this.router.url.replace('/', '') || 'service-decorator'
+    const initialPath = this.router.url.replace('/', '') || 'signal-forms'
     this.currentPath.set(initialPath)
   }
 
   currentExample = computed(() => {
-    return this.examples.find((ex) => ex.path === this.currentPath()) || this.examples[0]
+    return this.examples.find((example) => example.path === this.currentPath()) || this.examples[0]
   })
 
   currentIndex = computed(() => {
-    return this.examples.findIndex((ex) => ex.path === this.currentPath())
+    return this.examples.findIndex((example) => example.path === this.currentPath())
   })
 
   previousExample = computed(() => {

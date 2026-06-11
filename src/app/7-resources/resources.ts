@@ -20,13 +20,13 @@ export class Resources {
 
   orders2 = rxResource({
     params: () => ({ customerId: this.customerId() }),
-    stream: ({ params }) => this.orderService.getRecentOrders(params.customerId),
+    stream: ({ params }) => this.orderService.getCustomerOrders(params.customerId),
     defaultValue: [],
   })
 
   orders3 = resource({
     params: () => ({ customerId: this.customerId() }),
-    loader: ({ params }) => firstValueFrom(this.orderService.getRecentOrders(params.customerId)),
+    loader: ({ params }) => firstValueFrom(this.orderService.getCustomerOrders(params.customerId)),
     defaultValue: [],
   })
 

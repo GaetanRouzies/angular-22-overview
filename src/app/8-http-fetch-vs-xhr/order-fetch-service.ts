@@ -23,8 +23,6 @@ export class OrderFetchService {
   }
 
   uploadPayload(payload: Blob): Observable<HttpEvent<unknown>> {
-    // The fetch backend cannot report upload progress (it throws if the flag reaches
-    // it): the progress bar jumps straight to 100%, unlike the XHR backend
     return this.http.post(`${this.baseUrl}/uploads`, payload, {
       observe: 'events',
     })

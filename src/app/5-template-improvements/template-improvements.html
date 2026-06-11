@@ -1,0 +1,60 @@
+<div class="border rounded p-4 mb-4">
+  <h2>JS-style comments inside element tags</h2>
+  <div class="bg-gray-100 p-2 rounded" title="Cart preview">
+    Cart preview - {{ totalItems() }} item(s)
+  </div>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>Spread syntax</h2>
+  <ul>
+    @for (drink of [...coffees(), ...teas()]; track drink) {
+      <li>{{ drink }}</li>
+    }
+  </ul>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>Multiple &#64;case values</h2>
+  <div class="flex flex-wrap gap-2 my-2">
+    <button class="bg-primary" (click)="orderStatus.set('Pending')">Pending</button>
+    <button class="bg-primary" (click)="orderStatus.set('Processing')">Processing</button>
+    <button class="bg-primary" (click)="orderStatus.set('Shipped')">Shipped</button>
+    <button class="bg-primary" (click)="orderStatus.set('Delivered')">Delivered</button>
+  </div>
+  @switch (orderStatus()) {
+    @case ('Pending')
+    @case ('Processing') {
+      <p>Your order is being prepared…</p>
+    }
+    @case ('Shipped') {
+      <p>On its way! Tracking will be sent by email.</p>
+    }
+    @default {
+      <p>Order delivered. Thank you!</p>
+    }
+  }
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>Inline arrow functions</h2>
+  <div class="flex items-center gap-2 my-1">
+    <button class="bg-gray-500" (click)="counter.update((count) => count - 1)">−</button>
+    <span>{{ counter() }}</span>
+    <button class="bg-primary" (click)="counter.update((count) => count + 1)">+</button>
+  </div>
+</div>
+
+<div class="border rounded p-4 mb-4">
+  <h2>instanceof in templates</h2>
+  <div class="flex flex-wrap gap-2 my-2">
+    <button class="bg-primary" (click)="payment.set('cash')">Pay cash</button>
+    <button class="bg-primary" (click)="payWithGiftCard()">Use gift card</button>
+  </div>
+  @let currentPayment = payment();
+  @if (currentPayment instanceof GiftCard) {
+    <p>Gift card - {{ currentPayment.balance }} €</p>
+  } @else {
+    <p>Cash</p>
+  }
+</div>

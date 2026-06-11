@@ -17,8 +17,14 @@ body {
   border-color: var(--color-border) !important;
 }
 
-.tag {
-  @apply ml-2 inline-block rounded-full border px-2 py-0.5 align-middle text-xs text-gray-500;
+.invalid-feedback {
+  display: none;
+  color: var(--color-red-500);
+}
+
+.ng-invalid.ng-dirty + .invalid-feedback,
+.ng-invalid.ng-touched + .invalid-feedback {
+  display: block;
 }
 
 label {
@@ -29,12 +35,12 @@ input, select, textarea {
   @apply border border-border! px-2 py-1 rounded;
 }
 
-textarea:hover,input:hover {
+textarea:hover,input:hover,select:hover {
   border-color: var(--color-primary) !important;
 }
 
-textarea:focus,input:focus,
-textarea:focus-visible,input:focus-visible {
+textarea:focus,input:focus,select:focus,
+textarea:focus-visible,input:focus-visible,select:focus-visible {
   outline: none;
   border-color: var(--color-primary) !important;
   box-shadow: 0 0 0 1px var(--color-primary);

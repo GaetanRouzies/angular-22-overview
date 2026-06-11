@@ -1,0 +1,71 @@
+<form class="mb-4 border rounded p-4">
+  <h2>Signal Form</h2>
+  <div class="mb-2">
+    <label for="name">Name</label>
+    <input id="name" [formField]="productForm.name" />
+    @for (error of productForm.name().errors(); track error.kind) {
+      <small class="invalid-feedback">{{ error.message }}</small>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label for="price">Price</label>
+    <input id="price" type="number" step="0.01" [formField]="productForm.price" />
+    @for (error of productForm.price().errors(); track error.kind) {
+      <small class="invalid-feedback">{{ error.message }}</small>
+    }
+  </div>
+
+  <div class="mb-2">
+    <label for="category">Category</label>
+    <select id="category" [formField]="productForm.category">
+      <option value="">Select a category…</option>
+      @for (category of categories; track category) {
+        <option [value]="category">{{ category }}</option>
+      }
+    </select>
+    @for (error of productForm.category().errors(); track error.kind) {
+      <small class="invalid-feedback">{{ error.message }}</small>
+    }
+  </div>
+
+  <button
+    class="bg-primary"
+    type="button"
+    (click)="onSubmit()"
+    [disabled]="productForm().invalid()"
+  >
+    Create product
+  </button>
+
+  <pre class="mt-2">{{ { valid: productForm().valid(), ...productForm().value() } | json }}</pre>
+</form>
+
+<div class="border rounded p-4 mt-4">
+  <h2>SignalFormControl</h2>
+
+  <form [formGroup]="userForm">
+    <div class="mb-2">
+      <label for="first-name">First name (SignalFormControl)</label>
+      <input id="first-name" [formField]="userForm.controls.firstName.fieldTree" />
+      <small class="invalid-feedback">First name is required</small>
+    </div>
+
+    <div class="mb-2">
+      <label for="last-name">Last name (FormControl)</label>
+      <input id="last-name" formControlName="lastName" />
+      <small class="invalid-feedback">Last name is required</small>
+    </div>
+
+    <button
+      class="bg-primary"
+      type="button"
+      (click)="onUserSubmit()"
+      [disabled]="userForm.invalid"
+    >
+      Save user
+    </button>
+  </form>
+
+  <pre class="mt-2">{{ { valid: userForm.valid, ...userForm.value } | json }}</pre>
+</div>

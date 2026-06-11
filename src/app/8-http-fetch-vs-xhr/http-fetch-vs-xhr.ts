@@ -22,8 +22,10 @@ export class HttpFetchVsXhr {
 
   draft = signal('')
   receivedDrafts = signal<Draft[]>([])
-  fetchDraft = computed(() => this.receivedDrafts().find((d) => d.backend === 'fetch-keepalive'))
-  xhrDraft = computed(() => this.receivedDrafts().find((d) => d.backend === 'xhr'))
+  fetchDraft = computed(() =>
+    this.receivedDrafts().find((draft) => draft.backend === 'fetch-keepalive'),
+  )
+  xhrDraft = computed(() => this.receivedDrafts().find((draft) => draft.backend === 'xhr'))
 
   constructor() {
     this.refreshDrafts()
