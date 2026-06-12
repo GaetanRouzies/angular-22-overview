@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core'
 import { JsonPipe } from '@angular/common'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { FormField, form, min, minLength, required } from '@angular/forms/signals'
+import { FormField, form, min, minLength, required, FormRoot } from '@angular/forms/signals'
 import { SignalFormControl } from '@angular/forms/signals/compat'
 
 interface Product {
@@ -12,11 +12,11 @@ interface Product {
 
 @Component({
   selector: 'app-signal-forms',
-  imports: [FormField, ReactiveFormsModule, JsonPipe],
+  imports: [FormField, ReactiveFormsModule, JsonPipe, FormRoot],
   templateUrl: './signal-forms.html',
 })
 export class SignalForms {
-  readonly categories = ['Coffee', 'Tea', 'Pastry', 'Other']
+  categories = ['Coffee', 'Tea', 'Pastry', 'Other']
 
   productModel = signal<Product>({
     name: '',
@@ -32,13 +32,15 @@ export class SignalForms {
     min(schema.price, 0.01, { message: 'Price must be greater than 0' })
   })
 
-  onSubmit() {
+  saveProduct() {
+    this.productForm().markAsTouched()
     if (this.productForm().valid()) {
-      console.log('Product created:', this.productForm().value())
+      console.log('Product saved:', this.productForm().value())
     }
   }
 
-  // A FormControl backed by Signal Forms rules, usable inside a classic FormGroup
+  // SignalFormControl
+
   userForm = new FormGroup({
     firstName: new SignalFormControl('', (firstName) => {
       required(firstName)
@@ -49,7 +51,8 @@ export class SignalForms {
     }),
   })
 
-  onUserSubmit() {
+  saveUser() {
+    this.userForm.markAllAsTouched()
     if (this.userForm.valid) {
       console.log('User saved:', this.userForm.getRawValue())
     }

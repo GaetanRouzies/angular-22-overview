@@ -1,4 +1,4 @@
-<form class="mb-4 border rounded p-4">
+<form class="mb-4 border rounded p-4" [formRoot]="productForm" (submit)="saveProduct()">
   <h2>Signal Form</h2>
   <div class="mb-2">
     <label for="name">Name</label>
@@ -29,14 +29,7 @@
     }
   </div>
 
-  <button
-    class="bg-primary"
-    type="button"
-    (click)="onSubmit()"
-    [disabled]="productForm().invalid()"
-  >
-    Create product
-  </button>
+  <button class="bg-primary" type="submit">Save product</button>
 
   <pre class="mt-2">{{ { valid: productForm().valid(), ...productForm().value() } | json }}</pre>
 </form>
@@ -44,7 +37,7 @@
 <div class="border rounded p-4 mt-4">
   <h2>SignalFormControl</h2>
 
-  <form [formGroup]="userForm">
+  <form [formGroup]="userForm" (submit)="saveUser()">
     <div class="mb-2">
       <label for="first-name">First name (SignalFormControl)</label>
       <input id="first-name" [formField]="userForm.controls.firstName.fieldTree" />
@@ -57,14 +50,7 @@
       <small class="invalid-feedback">Last name is required</small>
     </div>
 
-    <button
-      class="bg-primary"
-      type="button"
-      (click)="onUserSubmit()"
-      [disabled]="userForm.invalid"
-    >
-      Save user
-    </button>
+    <button class="bg-primary" type="submit">Save user</button>
   </form>
 
   <pre class="mt-2">{{ { valid: userForm.valid, ...userForm.value } | json }}</pre>
