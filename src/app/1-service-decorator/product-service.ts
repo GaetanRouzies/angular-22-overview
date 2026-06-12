@@ -8,6 +8,7 @@ export interface Product {
   price: number
 }
 
+// @Injectable({ providedIn: 'root' })
 @Service()
 export class ProductService {
   private readonly http = inject(HttpClient)

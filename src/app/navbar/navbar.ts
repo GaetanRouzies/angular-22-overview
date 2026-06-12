@@ -15,9 +15,9 @@ export class Navbar {
   private router = inject(Router)
 
   examples: Example[] = [
-    { path: 'signal-forms', title: '1. Signal Forms' },
-    { path: 'service-decorator', title: '2. @Service Decorator' },
-    { path: 'inject-async', title: '3. injectAsync' },
+    { path: 'service-decorator', title: '1. @Service Decorator' },
+    { path: 'inject-async', title: '2. injectAsync' },
+    { path: 'signal-forms', title: '3. Signal Forms' },
     { path: 'agent-skills', title: '4. Agent Skills' },
     { path: 'template-improvements', title: '5. Template Improvements' },
     { path: 'debounced-signal', title: '6. Debounced Signals' },
@@ -32,11 +32,11 @@ export class Navbar {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        const path = event.urlAfterRedirects.replace('/', '') || 'signal-forms'
+        const path = event.urlAfterRedirects.replace('/', '') || 'service-decorator'
         this.currentPath.set(path)
       })
 
-    const initialPath = this.router.url.replace('/', '') || 'signal-forms'
+    const initialPath = this.router.url.replace('/', '') || 'service-decorator'
     this.currentPath.set(initialPath)
   }
 

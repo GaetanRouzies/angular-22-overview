@@ -33,11 +33,25 @@ export class SignalForms {
   })
 
   saveProduct() {
-    this.productForm().markAsTouched()
-    if (this.productForm().valid()) {
-      console.log('Product saved:', this.productForm().value())
-    }
+    // ...
   }
+
+
+  constructor() {
+    const formFieldTree = this.productForm
+    const formFieldState = this.productForm()
+
+    const nameFieldTree = this.productForm.name
+    const nameFieldState = this.productForm.name()
+  }
+
+
+
+
+
+
+
+
 
   // SignalFormControl
 
@@ -52,9 +66,6 @@ export class SignalForms {
   })
 
   saveUser() {
-    this.userForm.markAllAsTouched()
-    if (this.userForm.valid) {
-      console.log('User saved:', this.userForm.getRawValue())
-    }
+    // ...
   }
 }

@@ -10,9 +10,9 @@ This is an interactive demonstration application that presents the latest Angula
 
 Each feature is organized in its own numbered folder for easy navigation:
 
-1. **Signal Forms** (`1-signal-forms/`) - Signal-based forms (experimental)
-2. **@Service Decorator** (`2-service-decorator/`) - New @Service decorator for injectable services
-3. **injectAsync** (`3-inject-async/`) - Lazy service injection with prefetch strategies
+1. **@Service Decorator** (`1-service-decorator/`) - New @Service decorator for injectable services
+2. **injectAsync** (`2-inject-async/`) - Lazy service injection with prefetch strategies
+3. **Signal Forms** (`3-signal-forms/`) - Signal-based forms
 4. **Agent Skills** (`4-agent-skills/`) - Official Agent Skills for AI coding agents
 5. **Template Improvements** (`5-template-improvements/`) - New template syntax capabilities
 6. **Debounced Signals** (`6-debounced-signal/`) - New debounced() signal primitive
@@ -24,9 +24,9 @@ Each feature is organized in its own numbered folder for easy navigation:
 
 ```
 src/app/
-├── 1-signal-forms/         # Signal-based forms
-├── 2-service-decorator/    # @Service decorator
-├── 3-inject-async/         # injectAsync lazy injection
+├── 1-service-decorator/    # @Service decorator
+├── 2-inject-async/         # injectAsync lazy injection
+├── 3-signal-forms/         # Signal-based forms
 ├── 4-agent-skills/         # Agent Skills
 ├── 5-template-improvements/  # Template improvements
 ├── 6-debounced-signal/     # debounced() signals
