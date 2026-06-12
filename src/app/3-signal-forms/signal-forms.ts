@@ -37,12 +37,16 @@ export class SignalForms {
   }
 
 
+
+
+  
+
   constructor() {
     const formFieldTree = this.productForm
     const formFieldState = this.productForm()
 
     const nameFieldTree = this.productForm.name
-    const nameFieldState = this.productForm.name()
+    const nameFieldState = this.productForm.name().valid()
   }
 
 

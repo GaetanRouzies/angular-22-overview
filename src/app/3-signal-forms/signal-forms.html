@@ -34,13 +34,18 @@
   <pre class="mt-2">{{ { valid: productForm().valid(), ...productForm().value() } | json }}</pre>
 </form>
 
+
+
+
+
+
 <div class="border rounded p-4 mt-4">
   <h2>SignalFormControl</h2>
 
   <form [formGroup]="userForm" (submit)="saveUser()">
     <div class="mb-2">
       <label for="first-name">First name (SignalFormControl)</label>
-      <input id="first-name" [formField]="userForm.controls.firstName.fieldTree" />
+      <input id="first-name" formControlName="firstName" />
       <small class="invalid-feedback">First name is required</small>
     </div>
 
