@@ -29,7 +29,8 @@ export class OrderFetchService {
   }
 
   saveDraft(text: string): Observable<Draft> {
-    return this.http.post<Draft>(`${this.baseUrl}/draft`,
+    return this.http.post<Draft>(
+      `${this.baseUrl}/draft`,
       { backend: 'fetch-keepalive', text },
       { keepalive: true },
     )

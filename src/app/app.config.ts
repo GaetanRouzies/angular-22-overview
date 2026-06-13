@@ -1,5 +1,8 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core'
-import { provideHttpClient } from '@angular/common/http'
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
+} from '@angular/core'
 import { provideRouter } from '@angular/router'
 import { provideSignalFormsConfig } from '@angular/forms/signals'
 import { NG_STATUS_CLASSES } from '@angular/forms/signals/compat'

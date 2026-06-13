@@ -25,8 +25,6 @@ export class OrderXhrService {
   }
 
   saveDraft(text: string): Observable<Draft> {
-    return this.httpXhrClient.post<Draft>(`${this.baseUrl}/draft`,
-      { backend: 'xhr', text }
-    )
+    return this.httpXhrClient.post<Draft>(`${this.baseUrl}/draft`, { backend: 'xhr', text })
   }
 }

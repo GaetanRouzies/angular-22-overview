@@ -9,6 +9,4 @@ import { SignalCounter } from './signal-counter/signal-counter'
   templateUrl: './onpush-default.html',
   changeDetection: ChangeDetectionStrategy.Eager,
 })
-export class OnPushDefault {
-
-}
+export class OnPushDefault {}

@@ -1,15 +1,17 @@
 <h2>&#64;Service() - ProductService</h2>
-<button class="bg-primary mb-3" (click)="addProduct()">Add product</button>
+<button class="bg-primary mb-3" (click)="addProduct()">
+  Add product
+</button>
 <table class="w-full text-left">
   <thead>
-  <tr>
-    <th scope="col">Name</th>
-    <th scope="col">Price</th>
-    <th scope="col"><span class="sr-only">Actions</span></th>
-  </tr>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th scope="col"><span class="sr-only">Actions</span></th>
+    </tr>
   </thead>
   <tbody>
-    @for (product of products(); track product.id) {
+    @for (product of products.value(); track product.id) {
       <tr>
         <td>{{ product.name }}</td>
         <td>{{ product.price.toFixed(2) }} €</td>

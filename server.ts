@@ -83,14 +83,11 @@ app.get('/api/customers/:customerId/orders', async (req, res) => {
 })
 
 // Products are seeded from db.json; mutations stay in memory until restart.
-app.get('/api/products', async (_req, res) => {
-  await randomDelay()
+app.get('/api/products', (_req, res) => {
   res.json(db.products)
 })
 
-app.post('/api/products', express.json(), async (req, res) => {
-  await randomDelay()
-
+app.post('/api/products', express.json(), (req, res) => {
   const { name, price } = req.body as { name?: unknown; price?: unknown }
   if (typeof name !== 'string' || !name.trim() || typeof price !== 'number' || !Number.isFinite(price)) {
     res.status(400).json({ error: 'Expected { name: string, price: number }' })
@@ -103,9 +100,7 @@ app.post('/api/products', express.json(), async (req, res) => {
   res.status(201).json(product)
 })
 
-app.delete('/api/products/:id', async (req, res) => {
-  await randomDelay()
-
+app.delete('/api/products/:id', (req, res) => {
   const id = Number(req.params.id)
   const index = db.products.findIndex((product) => product.id === id)
   if (index === -1) {

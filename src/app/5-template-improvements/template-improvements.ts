@@ -4,12 +4,6 @@ class GiftCard {
   constructor(readonly balance: number) {}
 }
 
-interface CartItem {
-  name: string
-  quantity: number
-  unitPrice: number
-}
-
 type OrderStatus = 'Pending' | 'Processing' | 'Shipped' | 'Delivered'
 
 @Component({
