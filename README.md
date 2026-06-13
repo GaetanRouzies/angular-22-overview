@@ -6,6 +6,15 @@ This project showcases all the new features introduced in Angular 22. Each featu
 
 This is an interactive demonstration application that presents the latest Angular 22 features through practical examples. Navigate through the application to explore each feature in detail.
 
+## Starting the app
+
+Run both commands in separate terminals to start the frontend and the backend.
+
+```
+npm run start
+npm run server
+```
+
 ## Angular 22 New Features
 
 Each feature is organized in its own numbered folder for easy navigation:
